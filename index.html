@@ -11,29 +11,30 @@ function onBodyLoad() {
 document.addEventListener("deviceready",onDeviceReady,
 false);
 }
-function onDeviceReady() {
-navigator.notification.alert("PhoneGap is ready!");
+capturePhoto(){
+
+navigator. camera.getPicture (onSuccess, onFail, { quality: 50, destinationType: Camera .DestinationType.FILE_URI }); function onSuccess(imageURI) { var image = document.getElementById('myImage'); image.src = imageURI; } function onFail(message) { alert('Failed because: ' + message); }
 }
-function onConfirm(buttonIndex) {
-    alert('You selected button ' + buttonIndex);
+vercontacto(){
+var myContact = navigator. contacts.create ({"displayName": "Test User"}); 
+}
+vervideo()
+{
+ navigator.device. capture.captureVideo ( CaptureCB captureSuccess, CaptureErrorCB captureError, [ CaptureVideoOptions options] ); 
+}
+}
 
 
-// Show a custom confirmation dialog
-//
-function showConfirm() {
-    navigator.notification.confirm(
-        'You are the winner!',  // message
-        onConfirm,              // callback to invoke with index of button pressed
-        'Game Over',            // title
-        'Restart,Exit'          // buttonLabels
-    );
-}
-}
+
 </script>
 
 </head>
 <body onload="onBodyLoad()">
-<h1>HelloWorld2</h1>
+<h1>hola churros</h1>
 <p>This is a sample PhoneGap application.</p>
+<button onclick="capturePhoto();"> Capture Photo</button>
+<button onclick="vercantacto();"> Capture Photo</button>
+<button onclick="vervideo();"> Capture Photo</button>
+
 </body>
 </html>
