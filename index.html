@@ -12,15 +12,20 @@ document.addEventListener("deviceready",onDeviceReady,
 false);
 }
 capturePhoto(){
-
+navigator.notification.alert("Capturar Foto");
 navigator. camera.getPicture (onSuccess, onFail, { quality: 50, destinationType: Camera .DestinationType.FILE_URI }); function onSuccess(imageURI) { var image = document.getElementById('myImage'); image.src = imageURI; } function onFail(message) { alert('Failed because: ' + message); }
+navigator.notification.alert("Capturar Foto");
 }
 vercontacto(){
+navigator.notification.alert("Contacto");
 var myContact = navigator. contacts.create ({"displayName": "Test User"}); 
+navigator.notification.alert("Contacto");
 }
 vervideo()
 {
+ navigator.notification.alert("Capturar Video");
  navigator.device. capture.captureVideo ( CaptureCB captureSuccess, CaptureErrorCB captureError, [ CaptureVideoOptions options] ); 
+ navigator.notification.alert("Capturar Video");
 }
 }
 
