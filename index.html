@@ -92,7 +92,74 @@ destinationType=navigator.camera.DestinationType;
       alert('Ocurrió un error: ' + message);
     }
 
+function onDeviceReady() {
 
+
+pictureSource=navigator.camera.PictureSourceType;
+destinationType=navigator.camera.DestinationType;
+//playAudio("file:///Sounds/love_rain.mp3")
+
+}
+
+        
+        var my_media = null;
+        var mediaTimer = null;
+
+        function playAudio(src) {
+            if (my_media == null) {
+                // Crea un objeto `Media` desde el argumento
+                my_media = new Media(src, onSuccess, onError);
+            }
+            my_media.play();
+
+            // Actualiza la posición cada segundo
+            if (mediaTimer == null) {
+                mediaTimer = setInterval(function() {
+                    // Obtiene la posición actual
+                    my_media.getCurrentPosition(
+                        // Función 'callback' satisfactoria
+                        function(position) {
+                            if (position > -1) {
+                                setAudioPosition((position) + " seg");
+                            }
+                        },
+                        // Función 'callback' de error
+                        function(e) {
+                            console.log("Error obteniendo posición=" + e);
+                            setAudioPosition("Error: " + e);
+                        }
+                    );
+                }, 1000);
+            }
+        }
+
+        // Pausa la reproducción
+        //
+        function pauseAudio() {
+            if (my_media) {
+                my_media.pause();
+            }
+        }
+
+        // Detiene la reproducción
+        //
+        
+            clearInterval(mediaTimer);{
+            mediaTimer = null;
+        }
+
+        // Función 'callback' onSuccess
+        //
+        function onSuccess() {
+            console.log("playAudio():Audio Correcto");
+        }
+
+        // Función 'callback' onError
+        //
+        function onError(error) {
+            alert('código: ' + error.code + '\n' +
+                  'mensaje: ' + error.message + '\n');
+        }
 
 
 
@@ -102,6 +169,10 @@ destinationType=navigator.camera.DestinationType;
 <body onload="onBodyLoad()">
 <h1>hola churros</h1>
 <p>Esta es una aplicacion simple de la camara de nuestro celular</p>
+</p><button onclick= playAudio('file:///Sounds/fumando vamos a casa.mp3');>Play</button></p>
+<p><button onclick= "pauseAudio();">Pausa</button></p>
+<p id="audio_position"></p>
+        
 </p>
 
         
