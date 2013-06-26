@@ -1,56 +1,80 @@
-<!DOCTYPE html>
+
+  <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-<style type="text/css">
-  html { height: 100% }
-  body { height: 100%; margin: 0; padding: 0 }
-  #map_canvas { height: 100% }
-</style>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true">
-</script>
-<script type="text/javascript">
+	<meta http-equiv="Content-type" content="text/html;
+	charset=utf-8">
+	<meta name="viewport" id="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes;" />
 
-var map
-var marcador
 
-  function initialize(){
-    var latlng=new google.maps.LatLng(19.704991,-101.199715);
-    var myOptions={
-      zoom: 18,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      zoomControl: true
-    };
-    map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+	<link rel="stylesheet" href="jquery.mobile-1.0b3.css" />
+	<script type="text/javascript" charset="utf-8" src="jquery-1.6.4.js"></script>
+	<script type="text/javascript" charset="utf-8" src="jquery.mobile-1.0b3.js"></script>
 
-    marcador=new google.maps.Marker({
-		position: latlng,
-		map:map	
-	})
-  }
-  
-  function mostrarUbicacion(){
-		navigator.geolocation.getCurrentPosition( lecturaGPS , errorGPS , {enableHighAccuracy:true})  
-  }
-  
-  function lecturaGPS(ubicacion){
-	 var miubicacion = new google.maps.LatLng(ubicacion.coords.latitude, ubicacion.coords.longitude);
-	  map.setCenter(miubicacion)
-	  marcador.setPosition(miubicacion)
-  }
-  
-  function errorGPS(){
-	  alerta(" no puedo encontrarte =(")
-  }
-  
 
-</script>
+	<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+
+
+
+	<script type="text/javascript" charset="utf-8">
+		function onBodyLoad() {
+			document.addEventListener("deviceready", onDeviceReady,false);
+			}
+
+		function onDeviceReady() {
+			var element = document.getElementById('appInfo');
+			element.innerHTML = 'PhoneGap (version ' +
+			device.phonegap + ')<br />' + device.platform + ' ' +
+			device.name + ' (version ' + device.version + ').';
+		}
+	</script>
+
+
 </head>
-<body onload="initialize()">
-  <div id="map_canvas" style="width:100%; height:93%"></div>
-  <center>
-   <button onClick="mostrarUbicacion()"> Mi ubicacion</button>
-  </center>
+<body onload="onBodyLoad()">
+
+	<div data-role="page">
+		<div data-role="header" data-position="fixed">
+			<h1>HelloWorld con jquerymobile</h1>
+		</div>
+
+		<div data-role="content">
+			<p>Aplicacion de phonegap que utiliza la libreria de jquerymobile.</p>
+			<p id="appInfo">Iniciando.....</p>
+		</div>
+
+        <div data-role="collapsible">
+			<h3>Header swatch A</h3>
+			<p>I'm the collapsible content with a themed content block set to "a".</p>
+		</div>
+<div data-role="page" id="page1">
+  <div data-role="controlgroup">
+    <a href="#" data-role="button">Yes</a>
+    <a href="#" data-role="button">No</a>
+    <a href="#" data-role="button">Maybe</a>
+  </div>
+</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h1>PhoneGap UTM</h1>
+		</div>
+        <div data-role="fieldcontain">
+  <fieldset data-role="controlgroup">
+    <legend>Choose a pet:</legend>
+    <input type="radio" name="radio-choice-2" id="radio-choice-21" value="choice-1" checked="checked" />
+    <label for="radio-choice-1">Cat</label>
+ 
+    <input type="radio" name="radio-choice-2" id="radio-choice-22" value="choice-2" />
+    <label for="radio-choice-2">Dog</label>
+ 
+    <input type="radio" name="radio-choice-2" id="radio-choice-23" value="choice-3" />
+    <label for="radio-choice-3">Hamster</label>
+ 
+    <input type="radio" name="radio-choice-2" id="radio-choice-24" value="choice-4" />
+    <label for="radio-choice-4">Lizard</label>
+  </fieldset>
+</div>
+	</div>
+
 </body>
 </html>
